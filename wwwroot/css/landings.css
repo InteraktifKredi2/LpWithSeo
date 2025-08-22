@@ -1,0 +1,381 @@
+﻿/* Landing sayfası ayrıntı stilleri */
+.linear-bg {
+    background: linear-gradient(180deg,#f8fafc,#fff)
+}
+
+.custom-table th, .custom-table td {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+}
+
+    .custom-table th[rowspan] {
+        vertical-align: middle
+    }
+
+.badges {
+    display: flex;
+    overflow: auto;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+}
+
+    .badges > a {
+        scroll-snap-align: start;
+        flex: 0 0 auto
+    }
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+}
+
+/* === Eklenenler: renkler, başlıklar, tablo, video kartları === */
+:root {
+    --ik-blue-muted: #5f86f6;
+}
+/* logo mavisinin yumuşak tonu */
+
+.h1, .h2, h1, h2, h3, .h2and3Title {
+    color: var(--ik-blue);
+    font-weight: 800;
+}
+
+    .h2and3Title .boldText {
+        color: inherit;
+        font-weight: 800;
+    }
+
+.faq .head {
+    color: var(--ik-blue);
+}
+
+    .faq .head > div {
+        font-weight: 700;
+    }
+
+.custom-table th {
+    color: var(--ik-blue);
+    font-weight: 800;
+    background: #f8fbff;
+}
+
+.custom-table td {
+    color: var(--ik-blue-muted);
+}
+
+.video-card {
+    position: relative;
+    padding-bottom: 12px;
+}
+
+    .video-card .play-btn {
+        position: absolute;
+        left: 12px;
+        bottom: 18px;
+        padding: .55rem .9rem;
+    }
+
+    .video-card iframe {
+        width: 100%;
+        border: 0;
+        border-radius: 12px;
+    }
+
+/* Video kartı: tam görsel, ortada büyük play */
+.card.video-card {
+    padding: 0; /* kart iç boşluğu yok */
+    border: 0; /* kenarlık yok */
+    border-radius: 16px; /* köşeleri modern */
+    overflow: hidden; /* buton/iframe taşmasın */
+    position: relative;
+    background: #fff;
+}
+
+    .card.video-card img {
+        display: block;
+        width: 100%;
+        height: auto; /* görsel TAM haliyle görünür (kesme yok) */
+        border-radius: 16px;
+    }
+
+    .card.video-card .play-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px; /* BÜYÜK ikon */
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        background: rgba(28,100,242,.95); /* logo mavisi cam efekt */
+        color: #fff;
+        border: 5px solid #fff; /* beyaz halka */
+        box-shadow: 0 10px 25px rgba(28,100,242,.35);
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+        .card.video-card .play-btn:hover {
+            transform: translate(-50%,-50%) scale(1.06);
+        }
+
+        .card.video-card .play-btn:active {
+            transform: translate(-50%,-50%) scale(0.98);
+        }
+
+    /* İframe yüklendiğinde de köşeler düzgün kalsın */
+    .card.video-card iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: var(--video-ratio, 16/9); /* JS gerekirse set ediyor */
+        border: 0;
+        border-radius: 16px;
+    }
+
+/* Video kartı: görseli TAM göster, kırpma yok */
+.card.video-card {
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+}
+
+    .card.video-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        /* Eski kuralları iptal et */
+        aspect-ratio: auto !important;
+        object-fit: contain !important;
+        border-radius: 16px;
+    }
+
+    /* Ortada büyük, modern play butonu */
+    .card.video-card .play-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        background: rgba(28,100,242,.95);
+        color: #fff;
+        border: 5px solid #fff;
+        box-shadow: 0 10px 25px rgba(28,100,242,.35);
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+        .card.video-card .play-btn:hover {
+            transform: translate(-50%,-50%) scale(1.06);
+        }
+
+        .card.video-card .play-btn:active {
+            transform: translate(-50%,-50%) scale(0.98);
+        }
+
+    .card.video-card iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: var(--video-ratio, 16/9);
+        border: 0;
+        border-radius: 16px;
+    }
+
+/* Video card: kutu sabit, içerik o alana sığsın */
+.card.video-card {
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    /* JS buraya --card-ratio yazar; yoksa kare */
+    aspect-ratio: var(--card-ratio, 1/1);
+}
+
+    /* Poster ve iframe kutuyu doldursun, yükseklik değiştirmesin */
+    .card.video-card > img,
+    .card.video-card > iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 16px;
+    }
+
+    .card.video-card > img {
+        object-fit: contain;
+    }
+    /* görselin tamamı görünsün */
+    .card.video-card > iframe {
+        display: block;
+    }
+    /* object-fit iframelarda yok */
+
+    /* Ortada büyük play */
+    .card.video-card .play-btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        background: rgba(28,100,242,.95);
+        color: #fff;
+        border: 5px solid #fff;
+        box-shadow: 0 10px 25px rgba(28,100,242,.35);
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+        .card.video-card .play-btn:hover {
+            transform: translate(-50%,-50%) scale(1.06);
+        }
+
+        .card.video-card .play-btn:active {
+            transform: translate(-50%,-50%) scale(0.98);
+        }
+
+/* Bu başlık için: metin #222854 ve kalın değil; sadece <b> mavi + kalın */
+.h2.h2-default {
+    color: #222854; /* siyah yerine istenen ton */
+    font-weight: 400; /* kalın olmasın */
+}
+
+    .h2.h2-default b,
+    .h2.h2-default strong {
+        color: var(--ik-blue); /* logo mavisi */
+        font-weight: 800; /* kalın kalsın */
+    }
+
+/* === İkonlu özellik kartları === */
+.feature-grid .feature-card {
+    position: relative;
+    text-align: center;
+    padding: 28px 18px 24px;
+    border-radius: 16px;
+    background: radial-gradient(120px 80px at 80% 86%, rgba(28,100,242,.12), transparent 70%), linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+    border: 1px solid #eaf2ff;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, .04);
+}
+
+/* Üstte mavi daire */
+.icon-badge {
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 12px;
+    border-radius: 9999px;
+    background: var(--ik-blue);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 20px rgba(28,100,242,.25);
+}
+
+    /* Simgeyi beyaza çevir (şeffaf arka planlı PNG/SVG ise) */
+    .icon-badge .icon--white {
+        width: 40px;
+        height: 40px;
+        filter: brightness(0) invert(1);
+    }
+
+/* Başlık & metin */
+.feature-title {
+    margin: 6px 0 8px;
+    color: var(--ik-blue);
+    font-weight: 800;
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+}
+
+.feature-text {
+    color: #475569; /* okunaklı gri */
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 0 auto;
+}
+
+/* Mobilde nefes alan düzen */
+@media (max-width: 900px) {
+    .feature-grid .feature-card {
+        padding: 22px 16px;
+    }
+
+    .icon-badge {
+        width: 60px;
+        height: 60px;
+    }
+
+        .icon-badge .icon--white {
+            width: 36px;
+            height: 36px;
+        }
+}
+
+/* === İkonlu kart: DAİRE YOK, ikonlar olduğu gibi görünsün === */
+.feature-grid .feature-card {
+    text-align: center;
+    padding: 24px 18px 28px;
+    border-radius: 16px;
+    background: radial-gradient(120px 80px at 80% 86%, rgba(28,100,242,.10), transparent 70%), linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);
+    border: 1px solid #eaf2ff;
+}
+
+/* Önceden verdiğimiz mavi daireyi tamamen iptal */
+.icon-badge {
+    width: auto;
+    height: auto;
+    margin: 0 auto 12px;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    /* İkonları kendi rengiyle göster; büyüklüğü sen yönet */
+    .icon-badge img {
+        display: block;
+        width: 72px; /* istersen 64–80px arasında ayarla */
+        height: auto;
+        max-width: 100%;
+        filter: none !important; /* eski invert/beyaz filtreyi iptal */
+        border-radius: 0; /* köşeleri yuvarlama yok */
+    }
+
+/* Mobil ayar */
+@media (max-width:900px) {
+    .icon-badge img {
+        width: 60px;
+    }
+}
+
+.center-title {
+    text-align: center;
+}
+
+.apply-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+}
+
+    .apply-card .lead {
+        margin: 0;
+    }

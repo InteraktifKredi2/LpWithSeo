@@ -1,0 +1,173 @@
+﻿@{
+    Layout = null;
+    var title = ViewData["Title"]?.ToString() ?? "Landing";
+    var desc = ViewData["Description"]?.ToString() ?? "Interaktif Kredi - Landing Page";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title</title>
+    <meta name="description" content="@desc" />
+    <link rel="canonical" href="@Context?.Request?.Path" />
+    <link rel="preload" as="image"
+          href="@Url.Content("~/img/krediguvenraporu.jpg")" />
+
+    <!-- Critical CSS (ilk ekranda gerekenler) -->
+    <style>
+        :root{
+          --ik-blue:#1c64f2; --ik-dark:#0b1324; --ik-text:#2a3344; --ik-muted:#6b7280;
+          --space-1:.25rem; --space-2:.5rem; --space-3:1rem; --space-4:1.5rem; --space-5:2rem; --space-6:3rem;
+          --radius:14px; --container:1140px;
+        }
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ik-text);background:#fff}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;height:auto;display:block}
+        .FixedContainer{width:min(100%,var(--container));margin-inline:auto;padding-inline:var(--space-3)}
+        .sectionPadding{padding:clamp(32px,6vw,72px) 0}
+        .h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin:0 0 var(--space-3)}
+        .h2{font-size:clamp(1.25rem,2.5vw,1.6rem);line-height:1.2;margin:0 0 var(--space-3)}
+        .lead{color:var(--ik-muted)}
+        .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.2rem;border-radius:999px;background:var(--ik-blue);color:#fff;font-weight:600;border:0}
+        .btn:focus{outline:3px solid rgba(28,100,242,.35);outline-offset:2px}
+        header.sticky{position:sticky;top:0;background:#fff;border-bottom:1px solid #eef2f7;z-index:10}
+        header .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+        .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;color:var(--ik-dark)}
+
+            .brand img {
+                display: block;
+                height: 36px;
+                width: auto
+            }
+        @@media (max-width:480px) {
+            .brand img
+
+        {
+            height: 28px
+        }
+
+        }
+        .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2.5vw,24px)}
+        @@media(max - width:900px){.grid-3{grid-template-columns:1fr}}
+        .card{border:1px solid #e5e7eb;border-radius:var(--radius);padding:18px;background:#fff}
+        .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+        @@media(max - width:900px){.hero{grid-template-columns:1fr}}
+        .faq .item{border:1px solid #e5e7eb;border-radius:var(--radius);margin-bottom:12px;background:#fff}
+        .faq .head{display:flex;gap:12px;align-items:center;padding:14px 16px;cursor:pointer}
+        .faq .body{padding:0 16px 16px;display:none}
+        .faq .item.active .body{display:block}
+        .hiddenFAQ{display:none}
+        footer{background:#0d1b2a;color:#e6e9ef;padding:32px 0;margin-top:40px}
+
+        /* === Başlıklar: logo mavisi + kalın === */
+        .h1, .h2, h1, h2, h3, .h2and3Title {
+            color: var(--ik-blue);
+            font-weight: 800;
+        }
+
+            .h2and3Title .boldText {
+                color: inherit;
+                font-weight: 800;
+            }
+
+        /* SSS başlığı + alt başlıklar */
+        .faq .head {
+            color: var(--ik-blue);
+        }
+
+            .faq .head > div {
+                font-weight: 700;
+            }
+        /* başlık metni */
+
+        :root {
+            /* varsa mevcut değişkenlerin altında kalsın */
+            --ik-blue-muted: #5f86f6; /* logo mavisinin yumuşak tonu */
+        }
+
+        /* Tabloda başlık hücreleri (üst satır + 'İletişim') */
+        .custom-table th {
+            color: var(--ik-blue);
+            font-weight: 800;
+            background: #f8fbff; /* hafif zemin - istersen kaldır */
+        }
+
+        /* Tabloda içerik satırı (ikinci satır) */
+        .custom-table td {
+            color: var(--ik-blue-muted);
+        }
+
+        /* Video kartı: buton üstte */
+        .video-card {
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+            .video-card .play-btn {
+                position: absolute;
+                left: 12px;
+                bottom: 18px;
+                padding: .55rem .9rem;
+            }
+
+            /* YENİ: oranı JS'ten vereceğiz */
+            .video-card iframe {
+                width: 100%;
+                border: 0;
+                border-radius: 12px;
+            }
+
+        .custom-table th[rowspan] {
+            font-weight: 800;
+            color: var(--ik-blue);
+        }
+
+        .video-card img {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/css/landings.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Tek seferlik SVG ikon spriteları -->
+    <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+        <symbol id="icon-tick" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" /></symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z" /></symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4l1.41 1.41L8.83 10H20v2H8.83l4.58 4.59L12 18l-8-8z" /></symbol>
+    </svg>
+
+    <header class="sticky">
+        <div class="bar FixedContainer">
+            <a href="/" class="brand" aria-label="İnteraktif Kredi Ana Sayfa">
+                <img src="~/img/InteraktifKrediNewLogo.png" asp-append-version="true"
+                     alt="İnteraktif Kredi"
+                     width="336" height="92"
+                     style="height:36px;width:auto" />
+            </a>
+            <a href="#basvur" class="btn">Hemen Başvur</a>
+        </div>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="FixedContainer" style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap">
+            <div>© @DateTime.UtcNow.Year Interaktif Kredi</div>
+            <nav aria-label="Alt Menü" style="display:flex;gap:16px">
+                <a href="#" style="color:#fff">KVKK</a>
+                <a href="#" style="color:#fff">Aydınlatma</a>
+                <a href="#" style="color:#fff">İletişim</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="~/js/landingpage.js" defer asp-append-version="true"></script>
+</body>
+</html>
