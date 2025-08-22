@@ -379,3 +379,300 @@
     .apply-card .lead {
         margin: 0;
     }
+
+/* === Genel font === */
+body {
+    font-family: 'Poppins',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+/* === CTA butonları: daha tatlı görünüm & tam ortalama === */
+.cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn {
+    display: flex; /* inline-flex yerine flex */
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    padding: .9rem 1.3rem;
+    border-radius: 14px;
+    background: linear-gradient(180deg,#2b6df7,#1c64f2);
+    color: #fff;
+    font-weight: 700;
+    border: 0;
+    box-shadow: 0 8px 18px rgba(28,100,242,.25);
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(28,100,242,.32);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 12px rgba(28,100,242,.25);
+    }
+
+    .btn.btn-dark {
+        background: #0b1324;
+        box-shadow: 0 8px 18px rgba(16,24,40,.18);
+    }
+
+/* Hero görsel köşeleri */
+.hero img {
+    border-radius: 5px;
+}
+
+/* === İkonlu kartlar: ikonları küçült, başlık hizasını eşitle === */
+.feature-grid {
+    align-items: start;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-badge img {
+    width: 56px;
+    height: auto;
+}
+
+@media (max-width:900px) {
+    .icon-badge img {
+        width: 48px;
+    }
+}
+
+/* Başlıklar aynı sırada görünsün (satır sayısı değişse bile) */
+.feature-title {
+    min-height: 2.6em; /* 2 satıra denk boşluk */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* === SSS: 'Daha fazla göster' daha belirgin ve aşağı ok === */
+.moreFAQ {
+    margin-top: 8px;
+    font-weight: 800;
+    color: var(--ik-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+    .moreFAQ svg {
+        transform: rotate(270deg);
+    }
+/* oku aşağı çevir */
+
+/* SSS başlık çubuklarının görünümü biraz yumuşat */
+.faq .item {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(2,8,20,.04);
+}
+.feature-text {
+    max-width: 42ch;
+    margin: 0 auto;
+}
+
+/* Grid aralığı biraz nefes alsın */
+.feature-grid{ gap:clamp(16px,3vw,28px); align-items:stretch; }
+
+/* Kart iskeleti */
+.feature-card{
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  padding:32px 22px 28px; border-radius:16px;
+  background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);
+  border:1px solid #eaf2ff; box-shadow:0 6px 18px rgba(16,24,40,.04);
+  position:relative;
+}
+/* Alttaki yumuşak parıltı */
+.feature-card::after{
+  content:""; position:absolute; inset:auto -20% -8% -20%; height:120px;
+  background:radial-gradient(60% 60% at 80% 50%, rgba(28,100,242,.18), transparent 60%);
+  pointer-events:none; filter:blur(6px);
+}
+
+/* İkon alanı – yüksekliği sabitle; tüm kartlarda aynı hizada olsun */
+.icon-badge{ width:100%; height:72px; display:flex; align-items:center; justify-content:center; margin:0 0 14px; }
+.icon-badge img{ width:56px; height:auto; }
+
+/* Başlık – BLOK kalsın (flex değil); minimum yükseklikle sıraları sabitle */
+.feature-title{
+  margin:4px 0 10px;
+  color:var(--ik-blue); font-weight:800;
+  font-size:clamp(1.125rem,2vw,1.5rem); line-height:1.2; text-align:center;
+  min-height:2.6em;         /* 2 satıra denk – hepsi aynı hizada */
+  letter-spacing:.2px;       /* okunurluk */
+}
+
+/* Metin – tek ölçü ile ortala */
+.feature-text{
+  color:#475569; line-height:1.75; text-align:center;
+  max-width:46ch; margin:0 auto;
+}
+@media (max-width:900px){
+  .icon-badge{ height:60px }
+  .icon-badge img{ width:48px }
+  .feature-card{ padding:26px 18px 24px }
+}
+
+/* === Feature kartlarını ikinci görseldeki gibi hizala === */
+
+/* Grid sütunları dursun; kartların yüksekliği eşitlensin */
+.feature-grid{ gap:clamp(16px,3vw,28px); align-items:stretch; }
+
+/* Kart iskeleti: 1) ikon yüksekliği sabit 2) başlık için 2 satır yer 3) içerik */
+.feature-card{
+  display:grid;
+  grid-template-rows: 64px minmax(2.6em, auto) auto;  /* 64px ikon, 2 satır başlık alanı */
+  justify-items:center;
+  align-items:start;
+  padding:32px 24px 28px;
+  border-radius:16px;
+  background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%);
+  border:1px solid #eaf2ff;
+  box-shadow:0 6px 18px rgba(16,24,40,.04);
+}
+
+/* İkon bölmesi sabit ve ortalı */
+.icon-badge{
+  width:100%; height:64px;
+  display:grid; place-items:center;
+  margin:0 0 8px;
+  background:transparent !important; box-shadow:none !important;
+}
+.icon-badge img{ width:48px; height:auto; display:block; filter:none !important; }
+
+/* Başlık: BLOK (flex değil), kelime bölme yok; 2 satır alan ayrıldı */
+.feature-title{
+  margin:6px 0 10px;
+  color:var(--ik-blue);
+  font-weight:800;
+  font-size:clamp(1.125rem,2vw,1.5rem);
+  line-height:1.2;
+  text-align:center;
+  min-height:2.6em;             /* hepsi aynı hizada görünür */
+  word-break:normal;
+  hyphens:auto;
+}
+
+/* İçerik: ortak genişlik ve satır aralığı */
+.feature-text{
+  color:#475569;
+  text-align:center;
+  line-height:1.75;
+  max-width:46ch;
+  margin:0 auto;
+}
+
+@media (max-width:900px){
+  .feature-card{ padding:26px 18px 24px; grid-template-rows: 56px minmax(2.6em, auto) auto; }
+  .icon-badge{ height:56px; }
+  .icon-badge img{ width:40px; }
+}
+
+/* ===== FEATURE KARTLARI – NET HİZA + KÜÇÜK TİPO ===== */
+
+/* Sütunlar esnek ama kartlar eşit yükseklikte */
+.grid-3, .feature-grid {
+    align-items: stretch;
+    gap: clamp(16px, 2.2vw, 24px);
+}
+
+/* Kart iskeleti: 1) ikon satırı sabit 2) başlık 3) içerik  */
+.feature-card {
+    display: grid !important;
+    grid-template-rows: 56px auto 1fr;
+    padding: 22px 18px 22px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(180deg,#f7fbff 0%,#ffffff 100%) !important;
+    border: 1px solid #eaf2ff !important;
+    box-shadow: 0 6px 18px rgba(16,24,40,.04) !important;
+    height: 100%;
+}
+
+/* İkon alanı sabit ve ortalı */
+.icon-badge {
+    height: 56px !important;
+    margin: 0 0 10px !important;
+    display: grid !important;
+    place-items: center !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+    .icon-badge img {
+        width: 42px !important;
+        height: auto !important;
+        filter: none !important;
+    }
+
+/* Başlıklar: daha küçük, BLOK, boşluk kaybetmez */
+.feature-title {
+    display: block !important; /* önceki flex/grid’i iptal */
+    margin: 4px 0 8px !important;
+    text-align: center !important;
+    color: var(--ik-blue) !important;
+    font-weight: 800 !important;
+    font-size: clamp(1.00rem,1.5vw,1.25rem) !important;
+    line-height: 1.25 !important;
+    min-height: auto !important;
+    white-space: normal !important;
+    word-break: normal !important;
+}
+
+    .feature-title .boldText {
+        font-weight: 800;
+    }
+
+/* İçerik: küçük punto, dar satır uzunluğu */
+.feature-text {
+    font-size: clamp(.92rem,1.05vw,.98rem) !important;
+    line-height: 1.60 !important;
+    max-width: 40ch !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+/* Masaüstü > geniş ekranlarda bir tık daha sıkı */
+@media (min-width:1200px) {
+    .feature-card {
+        padding: 20px 18px 20px !important;
+    }
+}
+
+/* Mobilde ikon/başlık daha da küçülsün */
+@media (max-width:900px) {
+    .feature-card {
+        grid-template-rows: 48px auto 1fr;
+        padding: 18px 14px 18px !important;
+    }
+
+    .icon-badge {
+        height: 48px !important;
+    }
+
+        .icon-badge img {
+            width: 36px !important;
+        }
+
+    .feature-title {
+        font-size: 1.05rem !important;
+    }
+
+    .feature-text {
+        font-size: .95rem !important;
+    }
+}
