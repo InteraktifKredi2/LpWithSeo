@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/LP_SAMPLE/config
+/.vs/LP_SAMPLE/CopilotIndices/17.14.995.13737
+/.vs/LP_SAMPLE/DesignTimeBuild
+/.vs/LP_SAMPLE/FileContentIndex
+/.vs/LP_SAMPLE/v17
+/.vs/ProjectEvaluation
+/bin/Debug/net8.0
+/obj
